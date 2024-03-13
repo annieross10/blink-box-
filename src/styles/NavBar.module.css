@@ -1,0 +1,22 @@
+    .NavBar a {
+        color: white;
+        transition: color 0.3s ease;
+    }
+
+    .NavBar a:hover {
+        color: lightgray;
+    }
+
+    .NavBar .sign-up-link {
+        color: rgb(93, 105, 109);
+    }
+    .NavLink {
+        margin: 12px;
+        padding-top: 3px;
+        font-size: 110%;
+
+    }
+
+    .Active {
+        font-weight: 700;
+    }
