@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
-import logo from '../../assets/logo.png'; 
-import overviewImage from '../../assets/overlay-image.jpg'; 
+import logo from '../assets/logo.png'; 
+import overviewImage from '../assets/overlay-image.jpg'; 
 
 const HomePage = () => {
   return (

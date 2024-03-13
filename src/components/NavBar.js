@@ -3,7 +3,7 @@ import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import logo from '../assets/logo.png'
 import styles from '../styles/NavBar.module.css'
 import { NavLink} from "react-router-dom"
-import HomePage from "../pages/auth/HomePage";
+import HomePage from "./HomePage";
 
 const NavBar = () => {
   return (
