@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom"; 
+import { NavLink } from "react-router-dom";// Import useHistory hook
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import axios from "axios";
 
 const SignUpForm = () => {
+  const history = useHistory(); 
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -18,9 +22,16 @@ const SignUpForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    try {
+      await axios.post("/dj-rest-auth/registration/", formData);
+      // Redirect to the login page after successful signup
+      history.push("/login");
+    } catch (err) {
+      console.error("Sign up failed:", err);
+      // Handle errors here
+    }
   };
 
   return (
@@ -82,7 +93,7 @@ const SignUpForm = () => {
             </Button>
           </Form>
           <p className="mt-3 text-center">
-            Already have an account? <Link to="/signin">Sign in</Link>
+            Already have an account? <NavLink to="/login">Login</NavLink>
           </p>
         </Container>
       </Col>

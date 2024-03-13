@@ -3,13 +3,14 @@ import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import logo from '../assets/logo.png'
 import styles from '../styles/NavBar.module.css'
 import { NavLink} from "react-router-dom"
+import HomePage from "../pages/auth/HomePage";
 
 const NavBar = () => {
   return (
     <Navbar className={styles.NavBar} bg="dark" variant="dark" expand="md" fixed="top">
       <Container>
     <NavLink to="/">
-        <Navbar.Brand href="#home"><img src={logo} alt="logo" height="50"/>BLINKBOX
+        <Navbar.Brand href={HomePage}><img src={logo} alt="logo" height="50"/>BLINKBOX
         </Navbar.Brand>
     </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
