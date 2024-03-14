@@ -23,12 +23,14 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/login/", formData);
-      // Redirect to the dashboard or home page after successful login
-      history.push("/dashboard");
+      const response = await axios.post("/dj-rest-auth/login/", formData);
+      if (response.data.key) {
+        history.push("/home");
+      } else {
+        console.error("Login failed:", response);
+      }
     } catch (err) {
       console.error("Login failed:", err);
-      // Handle errors here
     }
   };
 
