@@ -5,7 +5,9 @@ import {Route,Switch} from 'react-router-dom'
 import './api/axiosDefaults'
 import SignUpForm from "./pages/auth/SignUpForm";
 import LoginForm from "./pages/auth/LoginForm";
+import LogoutForm from "./pages/auth/LogoutForm";
 import HomePage from "./components/HomePage";
+import Profile from "./pages/auth/Profile";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -27,6 +29,8 @@ function App() {
   useEffect(() => {
     handleMount();
   }, []);
+
+
   return (
   <CurrentUserContext.Provider value={currentUser}>
     <SetCurrentUserContext.Provider value={setCurrentUser}>
@@ -36,7 +40,10 @@ function App() {
           <Switch>
             <Route exact path="/" render={() => <HomePage/>} />
             <Route exact path="/login" render={() => <LoginForm/>} />
+            <Route exact path="/logout" render={() => <LogoutForm/>} />
             <Route exact path="/signup" render={() => <SignUpForm/>} />
+            <Route exact path="/profile" render={() => <Profile/>} />
+
             <Route render={() => <p>Page Not Found!</p>} />
           </Switch>
         </Container>

@@ -1,35 +1,34 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Col, Container, Alert, Row } from "react-bootstrap";
 import axios from "axios";
 
 const SignUpForm = () => {
-  const history = useHistory();
-
-  const [formData, setFormData] = useState({
+  const [signUpData, setSignUpData] = useState({
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+  const [errors, setErrors] = useState({});
+  const history = useHistory();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setSignUpData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/registration/", formData);
-      // Redirect to the profile page after successful signup
-      history.push("/profile");
+      await axios.post("/dj-rest-auth/registration/", signUpData);
+      history.push("/signin");
     } catch (err) {
-      console.error("Sign up failed:", err);
+      setErrors(err.response?.data);
     }
   };
 
@@ -45,11 +44,16 @@ const SignUpForm = () => {
                 type="text"
                 placeholder="Enter username"
                 name="username"
-                value={formData.username}
+                value={signUpData.username}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
+            {errors.username?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
 
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -57,35 +61,45 @@ const SignUpForm = () => {
                 type="email"
                 placeholder="Enter email"
                 name="email"
-                value={formData.email}
+                value={signUpData.email}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="formBasicPassword1">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                type="password"
+                type="password1"
                 placeholder="Password"
-                name="password"
-                value={formData.password}
+                name="password1"
+                value={signUpData.password1}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
+            {errors.password1?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
 
-            <Form.Group controlId="formBasicConfirmPassword">
+            <Form.Group controlId="formBasicPassword2">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
-                type="password"
+                type="password2"
                 placeholder="Confirm Password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
+                name="Password2"
+                value={signUpData.Password2}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
+            {errors.Password2?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
 
             <Button variant="primary" type="submit" block>
               Sign Up

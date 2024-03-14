@@ -1,80 +1,118 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { NavLink } from "react-router-dom";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 
-const LoginForm = () => {
-  const history = useHistory();
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Image from "react-bootstrap/Image";
+import Container from "react-bootstrap/Container";
 
-  const [formData, setFormData] = useState({
+import { Link, useHistory } from "react-router-dom";
+
+import appStyles from "../../App.module.css";
+import { SetCurrentUserContext } from "../../App";
+
+function SignInForm() {
+  const setCurrentUser = useContext(SetCurrentUserContext);
+
+  const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
+  const { username, password } = signInData;
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const [errors, setErrors] = useState({});
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const history = useHistory();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     try {
-      const response = await axios.post("/dj-rest-auth/login/", formData);
-      if (response.data.key) {
-        history.push("/home");
-      } else {
-        console.error("Login failed:", response);
-      }
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      history.push("/profile");
     } catch (err) {
-      console.error("Login failed:", err);
+      setErrors(err.response?.data);
     }
   };
 
+  const handleChange = (event) => {
+    setSignInData({
+      ...signInData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
-    <Row className="mt-5">
-      <Col md={{ span: 6, offset: 3 }}>
-        <Container>
-          <h1 className="text-center">Login</h1>
+    <Row>
+      <Col className="my-auto p-0 p-md-2" md={6}>
+        <Container className={`${appStyles.Content} p-4 `}>
+          <h1>sign in</h1>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicUsername">
-              <Form.Label>Username</Form.Label>
+            <Form.Group controlId="username">
+              <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter username"
+                placeholder="Username"
                 name="username"
-                value={formData.username}
+              
+                value={username}
                 onChange={handleChange}
-                required
               />
             </Form.Group>
+            {errors.username?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
+            <Form.Group controlId="password">
+              <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
                 name="password"
-                value={formData.password}
+               
+                value={password}
                 onChange={handleChange}
-                required
               />
             </Form.Group>
-
-            <Button variant="primary" type="submit" block>
-              Login
+            {errors.password?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+            <Button
+              type="submit"
+            >
+              Sign in
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert key={idx} variant="warning" className="mt-3">
+                {message}
+              </Alert>
+            ))}
           </Form>
-          <p className="mt-3 text-center">
-            Don't have an account? <NavLink to="/signup">Sign Up</NavLink>
-          </p>
         </Container>
+        <Container className={`mt-3 ${appStyles.Content}`}>
+          <Link to="/signup">
+            Don't have an account? <span>Sign up now!</span>
+          </Link>
+        </Container>
+      </Col>
+      <Col
+        md={6}
+        
+      >
+        <Image
+          className={`${appStyles.FillerImage}`}
+          src={"https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero.jpg"}
+        />
       </Col>
     </Row>
   );
-};
+}
 
-export default LoginForm;
+export default SignInForm;
