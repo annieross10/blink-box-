@@ -14,7 +14,7 @@ import { Link, useHistory } from "react-router-dom";
 import appStyles from "../../App.module.css";
 import { SetCurrentUserContext } from "../../App";
 
-function SignInForm() {
+function LoginForm() {
   const setCurrentUser = useContext(SetCurrentUserContext);
 
   const [signInData, setSignInData] = useState({
@@ -29,14 +29,20 @@ function SignInForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      setCurrentUser(data.user);
-      history.push("/profile");
-    } catch (err) {
-      setErrors(err.response?.data);
-    }
-  };
+try {
+  const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+  setCurrentUser(data.user);
+  history.push("/profile");
+} catch (err) {
+  // Check if err.response?.data exists before setting errors
+  const errorData = err.response?.data;
+  if (errorData) {
+    setErrors(errorData);
+  } else {
+    // If err.response?.data is undefined, set a generic error message
+    setErrors({ non_field_errors: ["An error occurred. Please try again later."] });
+  }
+}}
 
   const handleChange = (event) => {
     setSignInData({
@@ -115,4 +121,4 @@ function SignInForm() {
   );
 }
 
-export default SignInForm;
+export default LoginForm;

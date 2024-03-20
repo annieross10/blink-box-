@@ -8,8 +8,8 @@ const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
     username: "",
     email: "",
-    password: "",
-    confirmPassword: "",
+    password1: "", // Change to match backend field name
+    password2: "", // Change to match backend field name
   });
   const [errors, setErrors] = useState({});
   const history = useHistory();
@@ -26,7 +26,7 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/signin");
+      history.push("/profile");
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -49,7 +49,7 @@ const SignUpForm = () => {
                 required
               />
             </Form.Group>
-            {errors.username?.map((message, idx) => (
+            {errors && errors.username && errors.username.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
@@ -70,36 +70,36 @@ const SignUpForm = () => {
             <Form.Group controlId="formBasicPassword1">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                type="password1"
+                type="password"
                 placeholder="Password"
-                name="password1"
+                name="password1" 
                 value={signUpData.password1}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
-            {errors.password1?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+            {errors && errors.password1 && errors.password1.map((message, idx) => (
+  <Alert key={idx} variant="warning">
+    {message}
+  </Alert>
+))}
 
             <Form.Group controlId="formBasicPassword2">
               <Form.Label>Confirm Password</Form.Label>
               <Form.Control
-                type="password2"
+                type="password"
                 placeholder="Confirm Password"
-                name="Password2"
-                value={signUpData.Password2}
+                name="password2" // Change to match backend field name
+                value={signUpData.password2}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
-            {errors.Password2?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
+            {errors && errors.password2 && errors.password2.map((message, idx) => (
+  <Alert key={idx} variant="warning">
+    {message}
+  </Alert>
+))}
 
             <Button variant="primary" type="submit" block>
               Sign Up
