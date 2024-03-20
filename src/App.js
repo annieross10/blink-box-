@@ -7,7 +7,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import LoginForm from "./pages/auth/LoginForm";
 import LogoutForm from "./pages/auth/LogoutForm";
 import HomePage from "./components/HomePage";
-import Profile from "./pages/auth/Profile";
+import Profile from "./components/Profile";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 

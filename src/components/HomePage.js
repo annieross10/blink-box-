@@ -19,18 +19,14 @@ const HomePage = () => {
   const loggedInContent = (
     <Row>
       <Col md={12} className="text-center">
-        {currentUser && currentUser.username && (
-          <h1>Welcome, {currentUser.username}!</h1>
-        )}
+        <h1>Welcome, {currentUser && currentUser.username}!</h1>
         <p>Here are some posts from other users:</p>
         {/* Display uploaded images */}
         <div className="d-flex flex-wrap justify-content-center">
           {imageFiles.map((file, index) => (
             <div key={index} className="m-2">
               <Image src={URL.createObjectURL(file)} alt={`Uploaded ${index}`} fluid />
-              {currentUser && currentUser.username && (
-                <p>User: {currentUser.username}</p>
-              )}
+              <p>User: {currentUser && currentUser.username}</p>
               {/* Add other user details like time, etc. */}
             </div>
           ))}

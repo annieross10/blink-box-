@@ -14,7 +14,7 @@ import { Link, useHistory } from "react-router-dom";
 import appStyles from "../../App.module.css";
 import { SetCurrentUserContext } from "../../App";
 
-function LoginForm() {
+function SignInForm() {
   const setCurrentUser = useContext(SetCurrentUserContext);
 
   const [signInData, setSignInData] = useState({
@@ -29,20 +29,14 @@ function LoginForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-try {
-  const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-  setCurrentUser(data.user);
-  history.push("/profile");
-} catch (err) {
-  // Check if err.response?.data exists before setting errors
-  const errorData = err.response?.data;
-  if (errorData) {
-    setErrors(errorData);
-  } else {
-    // If err.response?.data is undefined, set a generic error message
-    setErrors({ non_field_errors: ["An error occurred. Please try again later."] });
-  }
-}}
+    try {
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      history.push("/profile");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
 
   const handleChange = (event) => {
     setSignInData({
@@ -63,12 +57,11 @@ try {
                 type="text"
                 placeholder="Username"
                 name="username"
-              
                 value={username}
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.username?.map((message, idx) => (
+            {errors && errors.username?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
@@ -80,22 +73,17 @@ try {
                 type="password"
                 placeholder="Password"
                 name="password"
-               
                 value={password}
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.password?.map((message, idx) => (
+            {errors && errors.password?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
-            <Button
-              type="submit"
-            >
-              Sign in
-            </Button>
-            {errors.non_field_errors?.map((message, idx) => (
+            <Button type="submit">Sign in</Button>
+            {errors && errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}
               </Alert>
@@ -108,10 +96,7 @@ try {
           </Link>
         </Container>
       </Col>
-      <Col
-        md={6}
-        
-      >
+      <Col md={6}>
         <Image
           className={`${appStyles.FillerImage}`}
           src={"https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero.jpg"}
@@ -121,4 +106,4 @@ try {
   );
 }
 
-export default LoginForm;
+export default SignInForm;
