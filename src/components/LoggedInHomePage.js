@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import NavBar from "./NavBar";
 import PostForm from "./PostForm";
+import Post from "./Post";
 import { axiosReq } from "../api/axiosDefaults";
+import "../styles/Homepage.css";
 
 const LoggedInHomePage = ({ currentUser }) => {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
-  const fetchPosts = async () => { // Define fetchPosts function before useEffect
+  const fetchPosts = async () => {
     try {
       const response = await axiosReq.get("/posts");
-      setPosts(response.data);
-      setLoading(false); // Set loading to false after fetching posts
+      if (response.data && response.data.results) {
+        setPosts(response.data.results);
+      } else {
+        console.error("Invalid response data format:", response.data);
+      }
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching posts:", error);
     }
@@ -23,7 +29,6 @@ const LoggedInHomePage = ({ currentUser }) => {
   }, []);
 
   const handleImageUpload = async () => {
-    // Fetch posts again after posting a new one
     await fetchPosts();
   };
 
@@ -33,34 +38,28 @@ const LoggedInHomePage = ({ currentUser }) => {
       <Container>
         <Row>
           <Col md={12} className="text-center">
-            <h1>Welcome, {currentUser && currentUser.username}!</h1>
-            <p>Tell us about your day!</p>
-            {loading ? (
-              <p>Loading posts...</p>
-            ) : !Array.isArray(posts) || posts.length === 0 ? ( // Check if posts is not an array or empty
-              <p>No posts available.</p>
-            ) : (
-              <div className="d-flex flex-wrap justify-content-center">
-                {posts.map((post, index) => (
-                  <div key={index} className="m-2">
-                    <Image src={post.url} alt={`Uploaded ${index}`} fluid />
-                    <p>User: {post.user}</p>
-                  </div>
-                ))}
-              </div>
-            )}
+            <h2>{currentUser && currentUser.username ? currentUser.username : "User"}, how was your day...</h2>
+            <PostForm handleImageUpload={handleImageUpload} />
           </Col>
         </Row>
-        <Row>
-          <Col md={12} className="text-center">
-            <PostForm handleImageUpload={handleImageUpload} />
+        <Row className="justify-content-center">
+          <Col md={10} lg={9} xl={8} className="text-center">
+            {loading ? (
+              <p>Loading posts...</p>
+            ) : (
+              posts.map((post) => (
+                <Card key={post.id} className="mb-4">
+                  <Card.Body>
+                    <Post {...post} />
+                  </Card.Body>
+                </Card>
+              ))
+            )}
           </Col>
         </Row>
       </Container>
     </>
   );
-  
 };
 
 export default LoggedInHomePage;
-

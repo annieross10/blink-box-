@@ -11,9 +11,13 @@ import LoggedOutHomePage from "./components/LoggedOutHomePage";
 import LoggedInHomePage from "./components/LoggedInHomePage";
 import Profile from "./components/Profile";
 import PostForm from "./components/PostForm";
+import PostDetail from "./components/PostDetail";
+import Post from "./components/Post";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
+
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -43,6 +47,8 @@ function App() {
               <Route exact path="/logout" component={LogoutForm} />
               <Route exact path="/signup" component={SignUpForm} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/posts/:postId" component={PostDetail} />
+              <Route exact path="/homepage" component={Post} />
               <Route
                 exact
                 path="/home"
