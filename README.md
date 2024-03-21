@@ -1,102 +1,87 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# BlinkBox
+Welcome to BlinkBox - a stylish platform for sharing images with friends!
 
-Welcome,
+## Table of Contents
+Introduction
+1. [Existing Features](#existing-features)
+     1.   [Welcome Page](#welcome-page)
+     2.   [Sign Up & Sign In](#SignUpSignIn)
+     3.   [Friend Requests](#friend-requests)
+     4.   [Homepage Button](#home-page-button)
+     5.   [Friend Posts](#friend-posts)
+     6.   [Save Posts](#save-posts)
+     7.   [Profile Page](#profile-page)
+     8.   [Engagement Options](#engagement-options)
+3. [Features Left to Implement](#features-left-to-implement)
+4. [Getting Started](#getting-started)
+5. [Usage](#usage)
+6. [Testing](#testing)
+   1. [Manual Testing](#manual-testing)
+   2. [Validator Testing](#validator-testing)
+7. [UX Design](#ux-design)
+   1. [Wireframes](#wireframes)
+8. [Fixed Bugs](#fixed-bugs)
+9. [Deployment](#deployment)
+10. [Credits](#credits)
+   1. [Content](#content)
+   2. [Media](#media)
 
-This is the Code Institute student template for React apps on the Codeanywhere IDE. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.  
-DO NOT use this template if you are using the Gitpod IDE. Use the following command instead:  
-`npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm`
+## Introduction
+BlinkBox is a sleek and user-friendly website designed for users to create profiles, share images with friends, and engage with content through likes, loves, and laughs. With its intuitive interface and visually appealing design, BlinkBox makes connecting with friends and sharing memories effortless.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **31st August, 2023**
+## Features
+### Sign Up & Sign In
+User Registration: Easily create an account to join the BlinkBox community. Registration requires providing basic information such as username, email, and password.
+Log In: Existing users can log in with their credentials for quick access to their profile.
 
-## Codeanywhere Reminders
+### Homepage Button
+Clear Navigation: Prominent buttons for sign-in, sign-up, and homepage navigation ensure ease of use. These buttons are strategically placed at the top of the page for easy access and visibility.
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### Friend Requests
+Connect with Friends: Users can send friend requests to other users on the platform. Upon receiving a friend request, users have the option to accept or decline it. This feature facilitates social interaction and networking among users.
 
-To log into the Heroku toolbelt CLI:
+### Friend Posts
+Stay Updated: Once a friend request is accepted, users can view posts from their friends on their homepage. The homepage displays a feed of posts from friends, allowing users to stay updated on their friends' activities and share moments together.
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+### Save Posts
+Bookmark Favorites: Users have the option to save posts to their profile for easy access later. This feature enables users to bookmark their favorite posts or content they wish to revisit in the future. Saved posts are stored in a designated section within the user's profile.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### Profile Page
+Organized Profile: The profile page is designed to provide users with a comprehensive overview of their activity on the platform. It includes separate lists for the user's own posts and saved posts from other users. This organization helps users navigate their profile efficiently and manage their content effectively.
 
----
+### Engagement Options
+Express Yourself: Users can interact with posts shared by other users using various reactions, including like, love, or laugh. These reaction options allow users to express their emotions and engage with content in a meaningful way. Additionally, users can leave comments on posts to initiate conversations and discussions with other users.
 
-Happy coding!
+## Features Left to Implement
 
-# Getting Started with Create React App
+## Getting Started
+To get started with BlinkBox:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Sign up for an account if you're new to BlinkBox. 
+- Provide the required information to create your profile and join the community.
+- Log in to your account using your credentials.
+- If you already have an account, simply enter your username/email and password to access your profile.
 
-## Available Scripts
+## Usage
+Once you're signed in, you can:
+- Explore the homepage to discover posts from friends.
+- Navigate through the feed to view updates from users you're connected with.
+- Send friend requests to connect with other users.
+- Share your own images and engage with content using reactions.
+- Upload your photos, add captions, and share them with your friends.
+- Interact with posts shared by others by liking, loving, or laughing at them.
+- Save interesting posts to your profile for easy access later.
 
-In the project directory, you can run:
+## Testing
+### Manual Testing
 
-### `npm install`
+## UX Design
 
-Installs the required npm packages.
+## Fixed Bugs
 
-### `npm start`
+## Deployment
 
-Runs the app in the development mode.\
-Open port 3000 to view it in the browser.
+## Credits
+### Content
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Media
