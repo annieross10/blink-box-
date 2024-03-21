@@ -8,67 +8,78 @@ import { CurrentUserContext } from "../App";
 const NavBar = () => {
   const currentUser = useContext(CurrentUserContext);
 
-  const loggedInIcons = (
-    <>
-      <NavLink
-        exact
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/profile"
-      >
-        Profile
-      </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/logout"
-      >
-        Sign Out
-      </NavLink>
-    </>
-  );
-
-  const loggedOutIcons = (
-    <>
-      <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/login"
-      >
-        <i className="fas fa-sign-in-alt"></i> Sign in
-      </NavLink>
-      <NavLink
-        to="/signup"
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-      >
-        <i className="fas fa-user-plus"></i> Sign up
-      </NavLink>
-    </>
-  );
-
   return (
-    <Navbar className={`${styles.NavBar} navbar-dark`} bg="dark" expand="md" fixed="top">
+    <Navbar
+      className={`${styles.NavBar} navbar-dark`}
+      bg="dark"
+      expand="md"
+      fixed="top"
+    >
       <Container>
-        <NavLink to="/">
-          <Navbar.Brand>
-            <img src={logo} alt="logo" height="45" /> BLINKBOX
-          </Navbar.Brand>
-        </NavLink>
+        {/* Conditionally render NavLink for the logo based on currentUser */}
+        {currentUser ? (
+          <NavLink to="/home"> {/* Redirect to LoggedInHomePage */}
+            <Navbar.Brand>
+              <img src={logo} alt="logo" height="45" /> BLINKBOX
+            </Navbar.Brand>
+          </NavLink>
+        ) : (
+          <NavLink to="/"> {/* Redirect to LoggedOutHomePage */}
+            <Navbar.Brand>
+              <img src={logo} alt="logo" height="45" /> BLINKBOX
+            </Navbar.Brand>
+          </NavLink>
+        )}
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
+            {/* "Home" button */}
             <NavLink
               exact
               className={styles.NavLink}
               activeClassName={styles.Active}
-              to="/"
+              to={currentUser ? "/home" : "/"}
             >
               Home
             </NavLink>
 
-            {currentUser ? loggedInIcons : loggedOutIcons}
+            {currentUser ? (
+              <>
+                <NavLink
+                  exact
+                  className={styles.NavLink}
+                  activeClassName={styles.Active}
+                  to="/profile"
+                >
+                  Profile
+                </NavLink>
+                <NavLink
+                  className={styles.NavLink}
+                  activeClassName={styles.Active}
+                  to="/logout"
+                >
+                  Sign Out
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  className={styles.NavLink}
+                  activeClassName={styles.Active}
+                  to="/login"
+                >
+                  <i className="fas fa-sign-in-alt"></i> Sign in
+                </NavLink>
+                <NavLink
+                  to="/signup"
+                  className={styles.NavLink}
+                  activeClassName={styles.Active}
+                >
+                  <i className="fas fa-user-plus"></i> Sign up
+                </NavLink>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -77,3 +88,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
+

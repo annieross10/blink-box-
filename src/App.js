@@ -1,15 +1,16 @@
-import styles from "./App.module.css";
+import React, { createContext, useEffect, useState } from "react";
+import axios from "axios";
+import { Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
-import {Route,Switch} from 'react-router-dom'
-import './api/axiosDefaults'
+import styles from "./App.module.css";
 import SignUpForm from "./pages/auth/SignUpForm";
 import LoginForm from "./pages/auth/LoginForm";
 import LogoutForm from "./pages/auth/LogoutForm";
-import HomePage from "./components/HomePage";
+import LoggedOutHomePage from "./components/LoggedOutHomePage";
+import LoggedInHomePage from "./components/LoggedInHomePage";
 import Profile from "./components/Profile";
-import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import PostForm from "./components/PostForm";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -30,26 +31,29 @@ function App() {
     handleMount();
   }, []);
 
-
   return (
-  <CurrentUserContext.Provider value={currentUser}>
-    <SetCurrentUserContext.Provider value={setCurrentUser}>
-      <div className="styles.App">
-        <NavBar />
-        <Container className={styles.Main}>
-          <Switch>
-            <Route exact path="/" render={() => <HomePage/>} />
-            <Route exact path="/login" render={() => <LoginForm/>} />
-            <Route exact path="/logout" render={() => <LogoutForm/>} />
-            <Route exact path="/signup" render={() => <SignUpForm/>} />
-            <Route exact path="/profile" render={() => <Profile/>} />
-
-            <Route render={() => <p>Page Not Found!</p>} />
-          </Switch>
-        </Container>
-      </div>
-    </SetCurrentUserContext.Provider>
-  </CurrentUserContext.Provider>
+    <CurrentUserContext.Provider value={currentUser}>
+      <SetCurrentUserContext.Provider value={setCurrentUser}>
+        <div className={styles.App}>
+          <NavBar />
+          <Container className={styles.Main}>
+            <Switch>
+              <Route exact path="/" component={LoggedOutHomePage} />
+              <Route exact path="/login" component={LoginForm} />
+              <Route exact path="/logout" component={LogoutForm} />
+              <Route exact path="/signup" component={SignUpForm} />
+              <Route exact path="/profile" component={Profile} />
+              <Route
+                exact
+                path="/home"
+                render={() => <LoggedInHomePage currentUser={currentUser} />}
+              />
+              <Route render={() => <p>Page Not Found!</p>} />
+            </Switch>
+          </Container>
+        </div>
+      </SetCurrentUserContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 
