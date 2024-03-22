@@ -25,7 +25,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div style={{ paddingTop: "20px" }}> {/* Apply inline style for padding-top */}
+    <div style={{ paddingTop: "20px" }}>
       <Form onSubmit={handleSearchSubmit}>
         <InputGroup className="mb-3">
           <Form.Control

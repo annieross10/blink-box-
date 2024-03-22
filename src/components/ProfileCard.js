@@ -1,38 +1,13 @@
-// profiles.js
-
 import React, { useState } from "react";
-import axios from "axios";
 
+import { Link } from "react-router-dom";
 
-const ProfileCard  = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-  const [query] = useState("");
-  const [filter] = ("");
-
-
-  const handleInputChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(`/profiles?${filter}search=${query}`);
-      setSearchResults(response.data.results);
-    } catch (error) {
-      console.error("Error searching profiles:", error);
-    }
-  };
-
+const ProfileCard = ({ profile }) => {
   return (
     <div>
-      <input type="text" value={searchQuery} onChange={handleInputChange} />
-      <button onClick={handleSearch}>Search</button>
-      <div>
-        {searchResults.map((profile) => (
-          <ProfileCard key={profile.id} profile={profile} />
-        ))}
-      </div>
+      <Link to={`/profiles/${profile.id}`}> {/* Link to the profile page */}
+        <h2>{profile.name}</h2> {/* Display profile name or relevant information */}
+      </Link>
     </div>
   );
 };

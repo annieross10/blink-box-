@@ -30,7 +30,7 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           
-          {currentUser && <SearchBar />} {/* Render SearchBar only if logged in */}
+          {currentUser && <SearchBar />} 
 
           <Nav className="ml-auto text-left">
            

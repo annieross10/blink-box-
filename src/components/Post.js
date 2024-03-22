@@ -44,7 +44,7 @@ const Post = (props) => {
 
   const handleLikeClick = async () => {
     try {
-      await axios.post(`/likes/${id}`);
+      await axios.post(`/posts/${id}/like-count`);
 
       setReactions((prevReactions) => ({
         ...prevReactions,
@@ -94,7 +94,7 @@ const Post = (props) => {
     <Card className="post">
       <Card.Body>
         <Media className="align-items-center justify-content-between">
-          <Link to={`/profiles/${profile_id}`}>{owner}</Link>
+          <Link to={`/userprofile/${profile_id}`}>{owner}</Link>
           <div className="d-flex align-items-center">
             {LoggedInHomePage && "..."}
           </div>
@@ -137,6 +137,4 @@ const Post = (props) => {
 };
 
 export default Post;
-
-
 

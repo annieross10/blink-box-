@@ -3,6 +3,7 @@ import { CurrentUserContext } from "../App";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import axios from "axios"; 
 import Post from "./Post"; 
+import FriendRequest from "./FriendRequest"; 
 
 const Profile = () => {
   const currentUser = useContext(CurrentUserContext);
@@ -39,6 +40,16 @@ const Profile = () => {
       </Card>
 
       <Row>
+        <Col md={12}>
+          <Card className="mb-4"> {/* Add new Card for Friend Requests */}
+            <Card.Body>
+              <FriendRequest currentUser={currentUser} /> {/* FriendRequest component */}
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+
+      <Row>
         <Col md={6}>
           <Card>
             <Card.Body>
@@ -70,6 +81,7 @@ const Profile = () => {
 };
 
 export default Profile;
+
 
 
 

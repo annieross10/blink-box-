@@ -12,6 +12,7 @@ import LoggedInHomePage from "./components/LoggedInHomePage";
 import ProfilePage from "./components/ProfilePage";
 import PostForm from "./components/PostForm";
 import Post from "./components/Post";
+import UserProfile from "./components/LoggedOutProfilePage"
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -46,6 +47,7 @@ function App() {
               <Route exact path="/logout" component={LogoutForm} />
               <Route exact path="/signup" component={SignUpForm} />
               <Route exact path="/profilepage" component={ProfilePage} />
+              <Route exact path="/userprofile" component={LoggedOutHomePage} />
               <Route exact path="/homepage" component={Post} />
               <Route
                 exact
