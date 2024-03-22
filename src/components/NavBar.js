@@ -4,27 +4,23 @@ import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import { CurrentUserContext } from "../App";
+import SearchBar from "./SearchBar"; 
 
 const NavBar = () => {
   const currentUser = useContext(CurrentUserContext);
 
   return (
-    <Navbar
-      className={`${styles.NavBar} navbar-dark`}
-      bg="dark"
-      expand="md"
-      fixed="top"
-    >
+    <Navbar className={`${styles.NavBar} navbar-dark`} bg="dark" expand="md" fixed="top">
       <Container>
-        {/* Conditionally render NavLink for the logo based on currentUser */}
+        
         {currentUser ? (
-          <NavLink to="/home"> {/* Redirect to LoggedInHomePage */}
+          <NavLink to="/home"> 
             <Navbar.Brand>
               <img src={logo} alt="logo" height="45" /> BLINKBOX
             </Navbar.Brand>
           </NavLink>
         ) : (
-          <NavLink to="/"> {/* Redirect to LoggedOutHomePage */}
+          <NavLink to="/"> 
             <Navbar.Brand>
               <img src={logo} alt="logo" height="45" /> BLINKBOX
             </Navbar.Brand>
@@ -33,8 +29,11 @@ const NavBar = () => {
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+          
+          <SearchBar />
+
           <Nav className="ml-auto text-left">
-            {/* "Home" button */}
+           
             <NavLink
               exact
               className={styles.NavLink}
@@ -50,7 +49,7 @@ const NavBar = () => {
                   exact
                   className={styles.NavLink}
                   activeClassName={styles.Active}
-                  to="/profile"
+                  to="/profilepage"
                 >
                   Profile
                 </NavLink>
@@ -88,4 +87,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-

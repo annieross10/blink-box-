@@ -42,6 +42,8 @@ const LoggedInHomePage = ({ currentUser }) => {
             <PostForm handleImageUpload={handleImageUpload} />
           </Col>
         </Row>
+        <Row className="justify-content-end mb-4">
+        </Row>
         <Row className="justify-content-center">
           <Col md={10} lg={9} xl={8} className="text-center">
             {loading ? (
