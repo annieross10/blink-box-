@@ -29,13 +29,21 @@ Introduction
 ## Introduction
 BlinkBox is a sleek and user-friendly website designed for users to create profiles, share images with friends, and engage with content through likes, loves, and laughs. With its intuitive interface and visually appealing design, BlinkBox makes connecting with friends and sharing memories effortless.
 
+![Welcome Page BlinkBox](src/assets/screenshots/screenshot4.png)
+
 ## Features
 ### Sign Up & Sign In
 User Registration: Easily create an account to join the BlinkBox community. Registration requires providing basic information such as username, email, and password.
 Log In: Existing users can log in with their credentials for quick access to their profile.
 
+![NavBar BlinkBox](src/assets/screenshots/screenshot2.png)
+
+![NavBar BlinkBox](src/assets/screenshots/screenshot1.png)
+
 ### Homepage Button
 Clear Navigation: Prominent buttons for sign-in, sign-up, and homepage navigation ensure ease of use. These buttons are strategically placed at the top of the page for easy access and visibility.
+
+![NavBar BlinkBox](src/assets/screenshots/screenshot5.png)
 
 ### Friend Requests
 Connect with Friends: Users can send friend requests to other users on the platform. Upon receiving a friend request, users have the option to accept or decline it. This feature facilitates social interaction and networking among users.
