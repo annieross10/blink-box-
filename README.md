@@ -6,12 +6,13 @@ Introduction
 1. [Existing Features](#existing-features)
      1.   [Welcome Page](#welcome-page)
      2.   [Sign Up & Sign In](#SignUpSignIn)
-     3.   [Friend Requests](#friend-requests)
-     4.   [Homepage Button](#home-page-button)
-     5.   [Friend Posts](#friend-posts)
-     6.   [Save Posts](#save-posts)
-     7.   [Profile Page](#profile-page)
-     8.   [Engagement Options](#engagement-options)
+     3.   [Post Page](#Postpage)
+     4.   [Friend Requests](#friend-requests)
+     5.   [Homepage Button](#home-page-button)
+     6.   [Friend Posts](#friend-posts)
+     7.   [Save Posts](#save-posts)
+     8.   [Profile Page](#profile-page)
+     9.   [Engagement Options](#engagement-options)
 3. [Features Left to Implement](#features-left-to-implement)
 4. [Getting Started](#getting-started)
 5. [Usage](#usage)
@@ -42,8 +43,17 @@ Log In: Existing users can log in with their credentials for quick access to the
 
 ### Homepage Button
 Clear Navigation: Prominent buttons for sign-in, sign-up, and homepage navigation ensure ease of use. These buttons are strategically placed at the top of the page for easy access and visibility.
+Once logged in, the Navigation buttons change to Home, Profile and Sign Out and a Search bar becomes available so that users can search for their friends to connect!
 
 ![NavBar BlinkBox](src/assets/screenshots/screenshot5.png)
+
+![NavBar Logged In BlinkBox](src/assets/screenshots/screenshot6.png)
+
+### Post Page
+The Post Page of our platform is designed to facilitate easy sharing of content among users. The central feature of this page is the Post Form, which allows users to create and share posts with other users on the platform.
+
+![Post Form BlinkBox](src/assets/screenshots/screenshot7.png)
+
 
 ### Friend Requests
 Connect with Friends: Users can send friend requests to other users on the platform. Upon receiving a friend request, users have the option to accept or decline it. This feature facilitates social interaction and networking among users.
