@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ProfileCard from "./ProfileCard";
+import { Form, InputGroup, Button } from "react-bootstrap";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -24,26 +25,32 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="search-bar">
-      <form onSubmit={handleSearchSubmit}>
-        <input
-          type="text"
-          placeholder="Search profiles..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
-        <button type="submit">Search</button>
-      </form>
+    <div style={{ paddingTop: "20px" }}> {/* Apply inline style for padding-top */}
+      <Form onSubmit={handleSearchSubmit}>
+        <InputGroup className="mb-3">
+          <Form.Control
+            type="text"
+            placeholder="Search profiles..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+            style={{ width: "200px" }}
+          />
+          <InputGroup.Append>
+            <Button type="submit" variant="primary" style={{ height: "38px", fontSize: "14px" }}> {/* Apply inline style for button */}
+              Search
+            </Button>
+          </InputGroup.Append>
+        </InputGroup>
+      </Form>
       {loading && <p>Loading...</p>}
-      {searchResults.length > 0 ? (
+      {searchResults.length > 0 && (
         searchResults.map((profile) => (
           <ProfileCard key={profile.id} profile={profile} />
         ))
-      ) : (
-        <p>No profiles found</p>
       )}
     </div>
   );
 };
 
 export default SearchBar;
+

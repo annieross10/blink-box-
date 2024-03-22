@@ -38,7 +38,7 @@ const LoggedInHomePage = ({ currentUser }) => {
       <Container>
         <Row>
           <Col md={12} className="text-center">
-            <h2>{currentUser && currentUser.username ? currentUser.username : "User"}, how was your day...</h2>
+            <h2 style={{ paddingTop: "20px" }}>Post about your day, {currentUser && currentUser.username ? currentUser.username : "User"}</h2>
             <PostForm handleImageUpload={handleImageUpload} />
           </Col>
         </Row>
